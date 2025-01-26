@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
 
                     <h1 className="text-8xl font-inter font-bold mb-6">Quest</h1>
                     <p className="text-xl max-w-2xl font-poppins mb-8">
-                        Help students study for National Exams such as AMC and F=MA. Have over <strong>6.5k+</strong> users actively using the product. Connected with Organizations like Visionary, ParagonX, and more.
+                        Help students study for National Exams such as AMC and F=MA. Have over <strong>24k+</strong> users actively using the product. Connected with Organizations like Visionary, ParagonX, and more.
                     </p>
 
                     <div className="flex space-x-4 mb-16">
