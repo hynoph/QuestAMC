@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Hero from './Components/hero';
-import Dashboard from './Components/dashboard';
-import Products from './Components/products';
-import Servers from './Components/servers';
-import Internships from './Components/internships';
+import Hero from './Components/Landing/hero';
+import Dashboard from './Components/Landing/dashboard';
+import Products from './Components/Landing/products';
+import Servers from './Components/Landing/servers';
+import Internships from './Components/Landing/internships';
 // Import other components if needed
 
 function App() {

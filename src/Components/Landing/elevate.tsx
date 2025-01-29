@@ -1,8 +1,8 @@
 import React from "react";
 import { FaArrowRight } from 'react-icons/fa';
-import amc from '../assets/amc.avif';
-import ap from '../assets/ap.jpg';
-import fma from '../assets/fma.webp';
+import amc from '../../assets/amc.avif';
+import ap from '../../assets/ap.jpg';
+import fma from '../../assets/fma.webp';
 
 const Elevate: React.FC = () => {
     return (
