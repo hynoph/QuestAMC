@@ -6,16 +6,17 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  User,
 } from "firebase/auth";
 import { FaGoogle } from "react-icons/fa"; // Importing the Google icon
 import Navbar from "../Landing/navbar.tsx";
-import logo from "../../assets/logo.png"; // Importing your logo
+// import logo from "../../assets/logo.png"; // Importing your logo
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 const Login = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -28,7 +29,7 @@ const Login = () => {
       .catch((error) => console.log(error));
   };
 
-  const handleEmailLogin = (e) => {
+  const handleEmailLogin = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
