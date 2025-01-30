@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './navbar.tsx';
 import { FaDiscord, FaCaretDown } from 'react-icons/fa';
 import Marquee from 'react-fast-marquee';
 import ParagonX from '../../assets/paragonx_logo.png';
@@ -9,6 +8,8 @@ import Elevate from './elevate.tsx';
 import Reviews from './reviews.tsx';
 import Faq from './faq.tsx';
 import Footer from './footer.tsx';
+import { useNavigate } from 'react-router-dom';
+import Navbar from './navbar.tsx';
 
 const Hero: React.FC = () => {
     const shootingStars = Array.from({ length: 50 }).map((_, i) => (
@@ -21,12 +22,13 @@ const Hero: React.FC = () => {
             }}
         ></div>
     ));
-
+    
+    const navigate = useNavigate();
     return (
         <>
-            <div className="heading bg-custom-purple text-white font-semibold w-full fixed top-0 py-2 z-10 flex justify-center">
+            {/* <div className="heading bg-custom-purple text-white font-semibold w-full fixed top-0 py-2 z-10 flex justify-center">
                 <span className="block text-base">Beta Launch | Limited Products</span>
-            </div>
+            </div> */}
             <Navbar />
 
             {/* Added mt-16 to create space below navbar */}
@@ -56,10 +58,10 @@ const Hero: React.FC = () => {
                     </p>
 
                     <div className="flex space-x-4 mb-16">
-                        <button className="bg-custom-purple text-white font-medium py-2 px-6 rounded-md hover:bg-purple-700 transition duration-200">
+                        <button onClick={() => navigate('/login')} className="bg-custom-purple text-white font-medium py-2 px-6 rounded-md hover:bg-purple-700 transition duration-200">
                             Try Now
                         </button>
-                        <button className="bg-custom-purple text-white font-medium border border-purple-600 py-2 px-6 rounded-md hover:bg-purple-600 hover:text-white transition duration-200">
+                        <button onClick={() => navigate('/login')} className="bg-custom-purple text-white font-medium border border-purple-600 py-2 px-6 rounded-md hover:bg-purple-600 hover:text-white transition duration-200">
                             Join Us
                         </button>
                     </div>

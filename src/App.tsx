@@ -4,11 +4,14 @@ import Dashboard from './Components/Landing/dashboard';
 import Products from './Components/Landing/products';
 import Servers from './Components/Landing/servers';
 import Internships from './Components/Landing/internships';
+import Login from './Components/Auth/login';
+import Navbar from './Components/Landing/navbar';
 // Import other components if needed
 
 function App() {
   return (
     <Router>
+      {/* <Navbar /> */}
       <div className="app-content">
         <Routes>
           <Route path="/" element={<Hero />} />
@@ -16,6 +19,7 @@ function App() {
           <Route path="/servers" element={<Servers />} />
           <Route path="/products" element={<Products />} />
           <Route path="/internships" element={<Internships />} />
+          <Route path="/login" element={<Login />} />
           {/* Add other routes if needed */}
         </Routes>
       </div>

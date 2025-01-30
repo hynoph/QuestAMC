@@ -7,6 +7,9 @@ const Navbar: React.FC = () => {
 
   return (
     <>
+      <div className="heading bg-custom-purple text-white font-semibold w-full fixed top-0 py-2 z-10 flex justify-center">
+        <span className="block text-base">Beta Launch | Limited Products</span>
+      </div>
       <div className="bg-custom-black text-white p-5 flex fixed left-0 top-10 w-full items-center justify-between">
         {/* Left Section */}
         <div className="flex items-center space-x-2" onClick={() => navigate("/")}>
