@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Hero from './Components/Landing/hero';
-import Dashboard from './Components/Landing/dashboard';
 import Products from './Components/Landing/products';
 import Servers from './Components/Landing/servers';
 import Internships from './Components/Landing/internships';
 import Login from './Components/Auth/login';
-import Navbar from './Components/Landing/navbar';
+import Dashboard from './Components/Landing/dashboard';
+import Module from './Components/Landing/modules';
 // Import other components if needed
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/internships" element={<Internships />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/modules" element={<Module />} />
           {/* Add other routes if needed */}
         </Routes>
       </div>
