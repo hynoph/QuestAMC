@@ -6,6 +6,8 @@ import Internships from './Components/Landing/internships';
 import Login from './Components/Auth/login';
 import Dashboard from './Components/Landing/dashboard';
 import Module from './Components/Landing/modules';
+import Mocks from './Components/Landing/mocks';
+import Review from './Components/Landing/review';
 // Import other components if needed
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route path="/internships" element={<Internships />} />
           <Route path="/login" element={<Login />} />
           <Route path="/modules" element={<Module />} />
+          <Route path="/modules/mocks" element={<Mocks />} />
+          <Route path="/topicsreview" element={<Review />} />
           {/* Add other routes if needed */}
         </Routes>
       </div>

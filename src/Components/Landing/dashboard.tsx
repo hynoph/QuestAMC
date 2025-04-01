@@ -38,3 +38,5 @@ const Dashboard: React.FC = () => {
 }
 
 export default Dashboard;
+
+// // // side panel w/ topics, middle screen w/ latex, bottom is comments + possible quiz
