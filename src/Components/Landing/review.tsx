@@ -23,9 +23,10 @@
 
 import React from "react";
 import Navbar from './navbar';
+import pdf from "../../assets/anikanotes.pdf";
 
 const Review: React.FC = () => {
-    const pdf = "/anikanotes.pdf";
+    // const pdf = "/anika";
 
     return (
         <>
