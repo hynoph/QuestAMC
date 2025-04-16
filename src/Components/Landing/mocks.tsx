@@ -1,139 +1,235 @@
-// import React, { useState, useEffect } from "react";
-// import problems from "../../../backend/AMC/10/amc10problems.json";
-// import allproblems from "../../../backend/data/allproblems.json";
+// import React, { useEffect, useState } from "react";
+import Example from "./Mocks/2024_amc_10_b";
+// import 2024_amc_2024_10_b
+
+// type ProblemEntry = string;
+// type GroupedProblems = { [mock: string]: string[] };
+
+const Mocks: React.FC = () => {
+  return (
+    <>
+      <Example />
+    </>
+  )
+}
+
+export default Mocks;
 
 // const Mocks: React.FC = () => {
-//     // Get a random problem from allproblems
-//     const getRandomProblem = () => {
-//         const randomIndex = Math.floor(Math.random() * allproblems.length);
-//         return allproblems[randomIndex];
+//   const [problems, setProblems] = useState<ProblemEntry[]>([]);
+//   const [grouped, setGrouped] = useState<GroupedProblems>({});
+//   const [selectedMock, setSelectedMock] = useState<string | null>(null);
+//   const [problemContents, setProblemContents] = useState<{ [title: string]: string }>({});
+//   const [loadingStates, setLoadingStates] = useState<{ [title: string]: 'loading' | 'loaded' | 'error' }>({});
+
+//   useEffect(() => {
+//     const loadProblems = async () => {
+//       try {
+//         const res = await fetch("../../../backend/data/allproblems.json");
+//         if (!res.ok) {
+//           throw new Error(`Failed to load problems: ${res.status} ${res.statusText}`);
+//         }
+//         const raw = await res.json();
+//         setProblems(raw);
+//         setGrouped(groupProblemsByMock(raw));
+//       } catch (error) {
+//         console.error("Error loading problems:", error);
+//       }
 //     };
+//     loadProblems();
+//   }, []);
 
-//     // Example: "2002 AMC 10A Problems/Problem 1"
-//     const problemTitle = getRandomProblem();
+//   useEffect(() => {
+//     const fetchContents = async () => {
+//       if (!selectedMock) return;
+      
+//       const titles = grouped[selectedMock] ?? [];
+      
+//       const initialLoadingStates: { [title: string]: 'loading' | 'loaded' | 'error' } = {};
+//       titles.forEach(title => {
+//         initialLoadingStates[title] = 'loading';
+//       });
+//       setLoadingStates(initialLoadingStates);
+      
+//       for (const title of titles) {
+//         try {
+//           const html = await fetchProblemContent(title);
+//           setProblemContents(prev => ({
+//             ...prev,
+//             [title]: html
+//           }));
+//           setLoadingStates(prev => ({
+//             ...prev,
+//             [title]: 'loaded'
+//           }));
+//         } catch (error) {
+//           console.error(`Error fetching ${title}:`, error);
+//           setLoadingStates(prev => ({
+//             ...prev,
+//             [title]: 'error'
+//           }));
+//         }
+//       }
+//     };
     
-//     // Parse the title to get year, test type, and problem number
-//     const year = problemTitle.match(/^\d{4}/)[0];
-//     const isA = problemTitle.includes("A Problems");
-//     const problemNumber = problemTitle.match(/\d+$/)[0];
+//     fetchContents();
+//   }, [selectedMock, grouped]);
 
-//     // Access the problem data using the parsed information
-//     // const yearData = problems[year];
-//     const problemsData = yearData && yearData[isA ? "A" : "B"] && yearData[isA ? "A" : "B"][problemNumber];
-    
+//   const renderLoadingState = (title: string) => {
+//     const state = loadingStates[title];
+//     if (state === 'loading') {
+//       return (
+//         <div className="flex items-center justify-center p-4">
+//           <div className="loading loading-spinner text-primary"></div>
+//           <span className="ml-2">Loading problem...</span>
+//         </div>
+//       );
+//     } else if (state === 'error') {
+//       return (
+//         <div className="text-error p-4">
+//           Failed to load problem. Please try again later.
+//         </div>
+//       );
+//     } else {
+//       return (
+//         <div
+//           className="prose max-w-none"
+//           dangerouslySetInnerHTML={{ __html: problemContents[title] ?? "" }}
+//         />
+//       );
+//     }
+//   };
+
+//   if (!selectedMock) {
 //     return (
-//         <>
-//             <h3>Problem Title: {problemTitle}</h3>
-//             {problemsData ? (
-//                 <>
-//                     <div>
-//                         <h2>Problem: </h2>
-//                         <div dangerouslySetInnerHTML={{ __html: problemsData.problem_statement }} />
-//                     </div>
-//                 </>
-//             ): (
-//                 <p>Problem was not found</p>
-//             )}
-//         </>
+//       <div className="grid gap-4 p-4">
+//         {Object.keys(grouped).length === 0 ? (
+//           <div className="flex items-center justify-center p-8">
+//             <div className="loading loading-spinner text-primary"></div>
+//             <span className="ml-2">Loading mock exams...</span>
+//           </div>
+//         ) : (
+//           Object.keys(grouped).map((mockName) => (
+//             <div
+//               key={mockName}
+//               className="bg-base-200 p-4 rounded-lg shadow cursor-pointer hover:bg-base-300 transition"
+//               onClick={() => setSelectedMock(mockName)}
+//             >
+//               <h2 className="text-lg font-semibold">{mockName}</h2>
+//               <div className="text-sm text-gray-500">{grouped[mockName]?.length} problems</div>
+//             </div>
+//           ))
+//         )}
+//       </div>
 //     );
-// }
+//   }
+
+//   return (
+//     <div className="p-4 space-y-6">
+//       <button
+//         onClick={() => {
+//           setSelectedMock(null);
+//           setProblemContents({});
+//         }}
+//         className="btn btn-sm btn-outline mb-2"
+//       >
+//         ← Back
+//       </button>
+//       <h2 className="text-2xl font-bold">{selectedMock}</h2>
+//       <div className="space-y-4">
+//         {(grouped[selectedMock] ?? []).map((title, i) => (
+//           <div key={title} className="bg-base-200 p-4 rounded-lg space-y-3">
+//             <div className="text-md font-semibold">Problem {i + 1}</div>
+//             {renderLoadingState(title)}
+//             <div className="flex gap-2 flex-wrap">
+//               {["A", "B", "C", "D", "E"].map((opt) => (
+//                 <button key={opt} className="btn btn-sm btn-outline">
+//                   {opt}
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
 
 // export default Mocks;
 
-import React, { useState, useEffect } from "react";
+// // Group problems by mock name like "2022 AMC 10A"
+// function groupProblemsByMock(problems: string[]): GroupedProblems {
+//   const grouped: GroupedProblems = {};
+//   for (const title of problems) {
+//     const match = title.match(/^(\d{4} (AMC|AHSME) ?(10|12)?[AB]?) Problems\/Problem \d+/);
+//     if (match) {
+//       const mockName = match[1];
+//       if (!grouped[mockName]) grouped[mockName] = [];
+//       grouped[mockName].push(title);
+//     }
+//   }
+//   for (const key in grouped) {
+//     grouped[key].sort((a, b) => {
+//       const numA = parseInt(a.match(/Problem (\d+)/)?.[1] || "0");
+//       const numB = parseInt(b.match(/Problem (\d+)/)?.[1] || "0");
+//       return numA - numB;
+//     });
+//   }
+//   return grouped;
+// }
 
-interface Problem {
-    heading: string;
-    content: string;
-}
+// // ✂️ Extract only the problem statement (not the solution)
+// async function fetchProblemContent(title: string): Promise<string> {
+//   const apiUrl = `https://artofproblemsolving.com/wiki/api.php?action=parse&page=${encodeURIComponent(
+//     title
+//   )}&prop=text&formatversion=2&format=json&origin=*`;
 
-const Mocks: React.FC = () => {
-    const [problems, setProblems] = useState<Problem[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
+//   try {
+//     const res = await fetch(apiUrl);
+//     if (!res.ok) throw new Error(`API request failed: ${res.status} ${res.statusText}`);
+//     const json = await res.json();
 
-    const scrapeProblems = async () => {
-        try {
-            // Using a CORS proxy (for development purposes)
-            const corsProxy = 'https://cors-anywhere.herokuapp.com/';
-            const targetUrl = 'https://amctrivial.com/?problems=2022_AMC_10A_Problems/Problem_1|2022_AMC_10A_Problems/Problem_2|2022_AMC_10A_Problems/Problem_3|2022_AMC_10A_Problems/Problem_4|2022_AMC_10A_Problems/Problem_5|2022_AMC_10A_Problems/Problem_6|2022_AMC_10A_Problems/Problem_7|2022_AMC_10A_Problems/Problem_8|2022_AMC_10A_Problems/Problem_9|2022_AMC_10A_Problems/Problem_10|2022_AMC_10A_Problems/Problem_11|2022_AMC_10A_Problems/Problem_12|2022_AMC_10A_Problems/Problem_13|2022_AMC_10A_Problems/Problem_14|2022_AMC_10A_Problems/Problem_15|2022_AMC_10A_Problems/Problem_16|2022_AMC_10A_Problems/Problem_17|2022_AMC_10A_Problems/Problem_18|2022_AMC_10A_Problems/Problem_19|2022_AMC_10A_Problems/Problem_20|2022_AMC_10A_Problems/Problem_21|2022_AMC_10A_Problems/Problem_22|2022_AMC_10A_Problems/Problem_23|2022_AMC_10A_Problems/Problem_24|2022_AMC_10A_Problems/Problem_25&testyear=2022&testname=AMC%2010A';
-            
-            const response = await fetch(corsProxy + targetUrl, {
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            });
-            
-            const text = await response.text();
-            
-            // Parse the HTML string
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, 'text/html');
-            
-            // Find all problem articles
-            const problemsSection = doc.querySelector('.problems-section');
-            const articleProblems = problemsSection?.querySelectorAll('.article-problems');
-            
-            if (articleProblems) {
-                const extractedProblems = Array.from(articleProblems).map(article => {
-                    const heading = article.querySelector('.problem-heading')?.textContent || '';
-                    const content = article.querySelector('p')?.innerHTML || '';
-                    
-                    return {
-                        heading: heading.trim(),
-                        content: content.trim()
-                    };
-                });
-                
-                setProblems(extractedProblems);
-            }
-        } catch (error) {
-            console.error("Error scraping problems:", error);
-        } finally {
-            setLoading(false);
-        }
-    };
+//     let html = json?.parse?.text;
+//     if (!html) throw new Error("Invalid response format from API");
 
-    useEffect(() => {
-        scrapeProblems();
-    }, []);
+//     return extractProblemOnly(html);
+//   } catch (err) {
+//     try {
+//       const proxy = "https://corsproxy.io/?" + encodeURIComponent(apiUrl);
+//       const proxyRes = await fetch(proxy);
+//       if (!proxyRes.ok) throw new Error(`Proxy request failed: ${proxyRes.status} ${proxyRes.statusText}`);
+//       const proxyJson = await proxyRes.json();
+//       const html = proxyJson?.parse?.text;
+//       if (!html) throw new Error("Invalid response from proxy");
 
-    return (
-        <div className="max-w-3xl mx-auto p-6">
-            {loading ? (
-                <div className="text-center text-white">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
-                    <p className="mt-4">Loading problems...</p>
-                </div>
-            ) : problems.length > 0 ? (
-                <div className="space-y-6">
-                    {problems.map((problem, index) => (
-                        <div 
-                            key={index}
-                            className="bg-slate-800 rounded-lg p-6"
-                        >
-                            <h2 className="text-xl font-bold text-white mb-4">
-                                {problem.heading}
-                            </h2>
-                            <div 
-                                className="text-white prose prose-invert max-w-none"
-                                dangerouslySetInnerHTML={{ __html: problem.content }}
-                            />
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <div className="text-center text-white">
-                    <p>No problems found</p>
-                    <button 
-                        onClick={scrapeProblems}
-                        className="mt-4 px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
-                    >
-                        Retry
-                    </button>
-                </div>
-            )}
-        </div>
-    );
-};
+//       return extractProblemOnly(html);
+//     } catch (proxyErr) {
+//       console.error("Proxy fallback also failed:", proxyErr);
+//       throw new Error(`Failed to load problem: ${err.message}`);
+//     }
+//   }
+// }
 
-export default Mocks;
+// // 🧠 Extract only the part between "Problem" and "Solution"
+// function extractProblemOnly(html: string): string {
+//   const container = document.createElement("div");
+//   container.innerHTML = html;
+
+//   const children = Array.from(container.children);
+//   const startIdx = children.findIndex(child =>
+//     child.textContent?.trim().toLowerCase().startsWith("problem")
+//   );
+//   const endIdx = children.findIndex(child =>
+//     child.textContent?.trim().toLowerCase().startsWith("solution")
+//   );
+
+//   const sliced = children.slice(
+//     startIdx !== -1 ? startIdx : 0,
+//     endIdx !== -1 ? endIdx : undefined
+//   );
+
+//   const resultContainer = document.createElement("div");
+//   sliced.forEach(el => resultContainer.appendChild(el.cloneNode(true)));
+
+//   return resultContainer.innerHTML;
+// }

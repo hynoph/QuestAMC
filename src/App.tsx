@@ -8,6 +8,7 @@ import Dashboard from './Components/Landing/dashboard';
 import Module from './Components/Landing/modules';
 import Mocks from './Components/Landing/mocks';
 import Review from './Components/Landing/review';
+import TestMock from './Components/Landing/Mocks/test_mock';
 // Import other components if needed
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/modules" element={<Module />} />
           <Route path="/modules/mocks" element={<Mocks />} />
           <Route path="/topicsreview" element={<Review />} />
+          <Route path="/modules/mocks/2024amc10b" element={<TestMock />} />
           {/* Add other routes if needed */}
         </Routes>
       </div>
