@@ -9,6 +9,7 @@ import Module from './Components/Landing/modules';
 import Mocks from './Components/Landing/mocks';
 import Review from './Components/Landing/review';
 import TestMock from './Components/Landing/Mocks/test_mock';
+import Book from "./Components/Landing/book";
 // Import other components if needed
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/modules/mocks" element={<Mocks />} />
           <Route path="/topicsreview" element={<Review />} />
           <Route path="/modules/mocks/2024amc10b" element={<TestMock />} />
+          <Route path="/book" element={<Book />} />
           {/* Add other routes if needed */}
         </Routes>
       </div>
